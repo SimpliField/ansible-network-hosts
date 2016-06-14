@@ -12,7 +12,7 @@
   lineinfile:
     dest: "/etc/hosts"
     regexp: ".*{{ item }}$"
-    line: "{{ hostvars[item].ansible_ssh_host }} {{item}}"
+    line: "{{ hostvars[item].ansible_host }} {{item}}"
     state: present
-  when: ovh_vrack_ip is not defined and hostvars[item].ansible_ssh_host is defined
+  when: ovh_vrack_ip is not defined and hostvars[item].ansible_host is defined
   with_items: "{{groups['all'] | default([])}}"
