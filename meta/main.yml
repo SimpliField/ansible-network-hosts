@@ -1,0 +1,20 @@
+galaxy_info:
+  author: Sébastien Elet
+  description: Setup /etc/hosts
+  company: SimpliField
+  license: BSD
+  min_ansible_version: 2
+  platforms:
+  - name: Ubuntu
+    versions:
+    - trusty
+    - utopic
+    - vivid
+    - wily
+    - xenial
+  galaxy_tags:
+  - system
+  - hosts
+  - networking
+  - network
+dependencies: []

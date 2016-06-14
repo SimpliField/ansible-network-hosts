@@ -1,0 +1,18 @@
+---
+- name: add vrack hosts
+  lineinfile:
+    dest: "/etc/hosts"
+    regexp: ".*{{ item }}$"
+    line: "{{ hostvars[item].ovh_vrack_ip }} {{item}}"
+    state: present
+  when: ovh_vrack_ip is defined and hostvars[item].ovh_vrack_ip is defined
+  with_items: "{{groups['vrack'] | default([])}}"
+
+- name: add hosts
+  lineinfile:
+    dest: "/etc/hosts"
+    regexp: ".*{{ item }}$"
+    line: "{{ hostvars[item].ansible_ssh_host }} {{item}}"
+    state: present
+  when: ovh_vrack_ip is not defined and hostvars[item].ansible_ssh_host is defined
+  with_items: "{{groups['all'] | default([])}}"
